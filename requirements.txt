@@ -1,0 +1,4 @@
+flask
+requests
+python-bale-bot
+google-generativeai
