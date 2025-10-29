@@ -50,10 +50,11 @@ async def on_message(message: Message):
         response = chat.send_message(prompt)
         await message.reply(response.text)
     except Exception as e:
-        await message.reply("خطا در ارتباط با هوش مصنوعی ❌\n" + str(e))
+        await message.reply("خطا در ارتباط با هوش مصنوعی ❌\n" + "به دلیل درخواست های زیاد کاربران در این لحظه، لطفا دقایقی دیگر دوباره امتحان کنید")
 
 # اجرای ربات
 bot.run()
+
 
 
 
