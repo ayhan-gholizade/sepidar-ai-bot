@@ -3,7 +3,7 @@ import google.generativeai as gg
 import asyncio
 
 # توکن‌ها
-BALE_TOKEN = "1067449233:Wd5MDS71xoPEhKIk2nH6N7dnDnHWvuK5v7s"
+BALE_TOKEN = "350738185:BBmcwF9eWlNDa7TBZOYe0HyDN9k8jR9_HvA"
 GEMINI_API_KEY = "AIzaSyBhbiOFG9-7z8ELNqizVWeoJnZmONKgjxY"
 
 # پیکربندی Gemini
@@ -30,7 +30,7 @@ async def on_message(message: Message):
         return await message.reply("📌 راهنما:\n- /start: شروع گفتگو\n- سوال بپرس تا جواب بدم!\n- فقط درباره‌ی نمایشگاه بپرس 😄")
 
     # پیام در حال پاسخ‌دهی
-    await message.reply("در حال ایجاد پاسخ ...")
+    await message.reply("در حال ایجاد پاسخ... 🤖")
 
     # ساخت یا بازیابی چت Gemini برای کاربر
     if user_id not in chat_sessions:
@@ -49,3 +49,4 @@ async def on_message(message: Message):
 
 # اجرای ربات
 bot.run()
+
