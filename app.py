@@ -3,7 +3,7 @@ import google.generativeai as gg
 import asyncio
 
 # توکن‌ها
-BALE_TOKEN = "350738185:It87MEnOHQWRj1qa9VQOSwleg98dfjiNWVI"
+BALE_TOKEN = "350738185:BBmcwF9eWlNDa7TBZOYe0HyDN9k8jR9_HvA"
 GEMINI_API_KEY = "AIzaSyBhbiOFG9-7z8ELNqizVWeoJnZmONKgjxY"
 
 # پیکربندی Gemini
@@ -54,6 +54,7 @@ async def on_message(message: Message):
 
 # اجرای ربات
 bot.run()
+
 
 
 
