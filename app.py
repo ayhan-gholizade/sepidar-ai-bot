@@ -26,6 +26,15 @@ async def on_message(message: Message):
     user_text = message.content
     today = datetime.now().date().isoformat()
 
+    # پاسخ به /start
+    if user_text == "/start":
+        used = user_daily_count.get(user_id, {}).get("count", 0)
+        return await message.reply(f"سلام 👋\nبه ربات ائتلاف سپیدار خوش اومدی! 🌿\nهر سوالی درباره نمایشگاه پژوهشی داری بپرس!\n📌 توجه: هر کاربر فقط می‌تونه روزانه ۸ سوال بپرسه.\n✅ تا الان {used} سوال پرسیدی امروز.")
+
+    # پاسخ به /help
+    if user_text == "/help":
+        return await message.reply("📌 راهنما:\n- /start: شروع گفتگو\n- سوال بپرس تا با Gemini جواب بدم!\n- فقط درباره‌ی نمایشگاه بپرس 😄")
+
     # بررسی محدودیت روزانه
     if user_id in user_daily_count:
         last_date = user_daily_count[user_id]["date"]
@@ -39,13 +48,7 @@ async def on_message(message: Message):
     else:
         user_daily_count[user_id] = {"date": today, "count": 1}
 
-    # پاسخ به /start
-    if user_text == "/start":
-        return await message.reply("سلام 👋\nبه ربات ائتلاف سپیدار خوش اومدی! 🌿\nهر سوالی درباره نمایشگاه پژوهشی داری بپرس!")
-
-    # پاسخ به /help
-    if user_text == "/help":
-        return await message.reply("📌 راهنما:\n- /start: شروع گفتگو\n- سوال بپرس تا با Gemini جواب بدم!\n- فقط درباره‌ی نمایشگاه بپرس 😄")
+    used_count = user_daily_count[user_id]["count"]
 
     # پیام در حال پاسخ‌دهی
     await message.reply("در حال ایجاد پاسخ ...")
@@ -61,7 +64,8 @@ async def on_message(message: Message):
     # ارسال به Gemini
     try:
         response = chat.send_message(prompt)
-        await message.reply(response.text)
+        final_text = response.text.strip() + f"\n\n📊 سوال {used_count} از ۸ امروز مصرف شد."
+        await message.reply(final_text)
     except Exception as e:
         await message.reply("خطا در ارتباط با هوش مصنوعی ❌\nبه دلیل درخواست‌های زیاد کاربران، لطفاً دقایقی دیگر دوباره امتحان کنید.")
 
